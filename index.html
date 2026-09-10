@@ -348,12 +348,18 @@ function b1up(){ return {id:'up', name:'Upper', tag:'Press + pull supersets', ex
   {n:'EZ BAR SKULL CRUSHER', w:1, s:2, r:'12-15', rpe:'10', rest:'0 min', sup:'A1', subs:['Overhead Cable Triceps Extension','DB French Press'], note:'Arc the bar behind your head, constant tension on triceps.'},
   {n:'EZ BAR CURL', w:1, s:2, r:'12-15', rpe:'10', rest:'~1.5 min', sup:'A2', subs:['DB Curl','Cable EZ Curl'], note:'Arc the bar "out not up", focus on squeezing your biceps.'}
 ]};}
-function b1low(){ return {id:'low', name:'Lower', tag:'Legs + calves/core', ex:[
-  {n:'DB ROMANIAN DEADLIFT', w:2, s:2, r:'10-12', rpe:'8-9', rest:'~2 min', subs:['Romanian Deadlift','45° Hyperextension'], note:"Maintain a neutral lower back, set your hips back, don't allow your spine to round."},
-  {n:'LEG PRESS', w:2, s:3, r:'10-12', rpe:'8-9', rest:'~2 min', subs:['Goblet Squat','DB Walking Lunge'], note:"Medium width feet placement on the platform, don't allow your lower back to round."},
-  {n:'LEG EXTENSION (DROPSET)', w:1, s:1, r:'10-12', rpe:'9-10', rest:'~1.5 min', drop:true, subs:['DB Step-Up','Goblet Squat'], note:'Dropset: perform 10-12 reps, drop the weight by ~50%, perform an additional 10-12 reps. Focus on squeezing your quads to make the weight move.'},
-  {n:'SEATED CALF RAISE', w:1, s:2, r:'12-15', rpe:'10', rest:'0 min', sup:'A1', subs:['Standing Calf Raise','Leg Press Toe Press'], note:"Press all the way up to your toes, stretch your calves at the bottom, don't bounce."},
-  {n:'CABLE CRUNCH', w:1, s:2, r:'12-15', rpe:'10', rest:'~1.5 min', sup:'A2', subs:['Machine Crunch','Plate-Weighted Crunch'], note:'Round your back as you crunch.'}
+function b1low(){ return {id:'low', name:'Lower', tag:'Trench Lower A - bilateral', ex:[
+  {n:'POGO JUMPS (OPTIONAL)', w:0, s:1, r:'20-30 reps', rpe:'-', rest:'~1 min', opt:true, note:'Trench primer. Knees relatively straight, bounce through the ankles, minimal ground contact, land quietly over the midfoot.'},
+  {n:'CALF RAISE', w:1, s:2, r:'6-12', rpe:'9-10', rest:'~1.5 min', subs:['Seated Calf Raise','Leg Press Toe Press','Unilateral Calf Raise'], note:'1 bent-knee set + 1 straight-leg set (or 2 straight-leg if only one variation). Deep stretch, pause at the bottom, squeeze at the top.'},
+  {n:'HIP ADDUCTION MACHINE', w:0, s:2, r:'6-8', rpe:'9-10', rest:'~1.5 min', subs:['Copenhagen Adduction','Roman Chair Adduction'], note:'Trench slot. Lengthened variations preferred. Largest comfortable range, control the eccentric, squeeze at the top.'},
+  {n:'LEG EXTENSION', w:1, s:2, r:'6-8', rpe:'9-10', rest:'~1.5 min', subs:['Unilateral Leg Extension','DB Step-Up'], note:'Trench pre-fatigue slot, before the squat. If this consistently reduces squat performance after several weeks, move it after the squat and hinge work.'},
+  {n:'BACK SQUAT', w:3, s:2, r:'3-5', rpe:'8', rest:'~3 min', subs:['Safety Bar Squat','Front Squat','Hack Squat','Pendulum Squat'], note:'Trench bilateral squat pattern (or top set x3 + backdown x5). Brace before each rep, controlled descent, drive up explosively. Belt and sleeves if preferred.'},
+  {n:'ROMANIAN DEADLIFT', w:2, s:2, r:'3-5', rpe:'8', rest:'~3 min', subs:['Stiff-Leg Deadlift','Conventional Deadlift','Trap Bar Deadlift','Good Morning'], note:'Trench hip hinge slot (or top set x3 + backdown x5). Hips back, weight close, drive the hips through. Straps and belt recommended.'},
+  {n:'HIP ABDUCTION MACHINE', w:0, s:2, r:'6-10', rpe:'9-10', rest:'~1.5 min', subs:['Cable Airplane','Banded Lateral Walk'], note:'Trench slot. Pelvis level, lead with the outside of the hip, pause in the lengthened position, no momentum.'},
+  {n:'SEATED LEG CURL', w:1, s:2, r:'6-8', rpe:'9-10', rest:'~1.5 min', subs:['Glute-Ham Raise','Unilateral Lying Leg Curl'], note:'Seated preferred. Full knee extension each rep, control the eccentric, squeeze at the top.'},
+  {n:'SIT-UP', w:0, s:2, r:'6-10', rpe:'9-10', rest:'~1.5 min', subs:['GHD Sit-Up','Decline Sit-Up','Cable Crunch','Hanging Leg Raise'], note:'Trench lumbar flexion slot. Initiate with lumbar flexion, posterior pelvic tilt at the top.'},
+  {n:'DUMBBELL SIDE BEND', w:0, s:2, r:'6-10', rpe:'9-10', rest:'~1.5 min', subs:['Cable Side Bend','Machine Side Bend'], note:'Trench lateral flexion slot. Spinal lateral flexion only, no torso rotation, pause in the stretch.'},
+  {n:'BOX JUMPS (OPTIONAL)', w:0, s:1, r:'3-5 reps', rpe:'-', rest:'~1 min', opt:true, note:'Trench power slot. Alternate box vertical jumps and box broad jumps. New to plyometrics: pogo jumps only for the first 4-6 weeks.'}
 ]};}
 // ---- BLOCK 2 (Weeks 5-8) ----
 function b2fb(){ return {id:'fb', name:'Full Body', tag:'Unilateral + dropsets', ex:[
@@ -375,12 +381,18 @@ function b2up(){ return {id:'up', name:'Upper', tag:'Dips + pull', ex:[
   {n:'DB INCLINE CURL', w:1, s:2, r:'15-20', rpe:'10', rest:'0 min', sup:'A1', subs:['Cable EZ Curl','EZ Bar Curl'], note:'Brace upper back against bench, 45 degree incline, keep shoulders back as you curl.'},
   {n:'DB FRENCH PRESS', w:1, s:2, r:'15-20', rpe:'10', rest:'~1.5 min', sup:'A2', subs:['Overhead Cable Triceps Extension','EZ Bar Skull Crusher'], note:'Can perform seated or standing. Press the dumbbell straight up and down behind your head.'}
 ]};}
-function b2low(){ return {id:'low', name:'Lower', tag:'Unilateral legs', ex:[
-  {n:'DB BULGARIAN SPLIT SQUAT', w:2, s:3, r:'10-12', rpe:'8-9', rest:'~2 min', subs:['Goblet Squat','Leg Press'], note:'Start with your weaker leg. Squat deep.'},
-  {n:'DB ROMANIAN DEADLIFT', w:2, s:2, r:'10-12', rpe:'8-9', rest:'~2 min', subs:['Romanian Deadlift','45° Hyperextension'], note:'Emphasize the stretch in your hamstrings, prevent your lower back from rounding.'},
-  {n:'GOBLET SQUAT', w:1, s:1, r:'12-15', rpe:'9-10', rest:'~1.5 min', subs:['Leg Extension','Step-Up'], note:'Hold the dumbbell underneath your chin, sit back and down, push your knees out laterally.'},
-  {n:'LEG PRESS TOE PRESS', w:1, s:2, r:'15-20', rpe:'10', rest:'0 min', sup:'A1', subs:['Standing Calf Raise','Seated Calf Raise'], note:"Press all the way up to your toes, stretch your calves at the bottom, don't bounce."},
-  {n:'MACHINE CRUNCH', w:1, s:2, r:'10-12', rpe:'9', rest:'~1.5 min', sup:'A2', subs:['Plate-Weighted Crunch','Cable Crunch'], note:"Squeeze your abs to move the weight, don't use your arms to help."}
+function b2low(){ return {id:'low', name:'Lower', tag:'Trench Lower B - unilateral', ex:[
+  {n:'POGO JUMPS (OPTIONAL)', w:0, s:1, r:'20-30 reps', rpe:'-', rest:'~1 min', opt:true, note:'Trench primer. Knees relatively straight, bounce through the ankles, minimal ground contact, land quietly over the midfoot.'},
+  {n:'CALF RAISE', w:1, s:2, r:'6-12', rpe:'9-10', rest:'~1.5 min', subs:['Seated Calf Raise','Leg Press Toe Press','Unilateral Calf Raise'], note:'1 bent-knee set + 1 straight-leg set (or 2 straight-leg if only one variation). Deep stretch, pause at the bottom, squeeze at the top.'},
+  {n:'HIP ADDUCTION MACHINE', w:0, s:2, r:'6-8', rpe:'9-10', rest:'~1.5 min', subs:['Copenhagen Adduction','Roman Chair Adduction'], note:'Trench slot. Lengthened variations preferred. Largest comfortable range, control the eccentric, squeeze at the top.'},
+  {n:'UNILATERAL LEG EXTENSION', w:1, s:2, r:'6-8 per leg', rpe:'9-10', rest:'~1.5 min', subs:['Leg Extension','DB Step-Up'], note:'Trench pre-fatigue slot, one leg at a time. Full range, secure yourself with the handles, control the eccentric.'},
+  {n:'DB BULGARIAN SPLIT SQUAT', w:2, s:2, r:'3-5 per leg', rpe:'8', rest:'~2.5 min', subs:['Split Squat','Reverse Lunge','Hatfield Split Squat','Unilateral Leg Press'], note:'Trench unilateral squat pattern (or top set x3 + backdown x5). Start with the weaker leg. Log dumbbell weight per hand.'},
+  {n:'SEATED GOOD MORNING', w:2, s:2, r:'3-5', rpe:'8', rest:'~2.5 min', subs:['Cable Row Hip Hinge','Romanian Deadlift'], note:'Trench seated hip hinge slot (or top set x3 + backdown x5). Perform beltless, straps if needed.'},
+  {n:'HIP ABDUCTION MACHINE', w:0, s:2, r:'6-10', rpe:'9-10', rest:'~1.5 min', subs:['Cable Airplane','Banded Lateral Walk'], note:'Trench slot. Pelvis level, lead with the outside of the hip, pause in the lengthened position, no momentum.'},
+  {n:'SEATED LEG CURL', w:1, s:2, r:'6-8', rpe:'9-10', rest:'~1.5 min', subs:['Glute-Ham Raise','Unilateral Lying Leg Curl'], note:'Seated preferred. Full knee extension each rep, control the eccentric, squeeze at the top.'},
+  {n:'SIT-UP', w:0, s:2, r:'6-10', rpe:'9-10', rest:'~1.5 min', subs:['GHD Sit-Up','Decline Sit-Up','Cable Crunch','Hanging Leg Raise'], note:'Trench lumbar flexion slot. Initiate with lumbar flexion, posterior pelvic tilt at the top.'},
+  {n:'DUMBBELL SIDE BEND', w:0, s:2, r:'6-10', rpe:'9-10', rest:'~1.5 min', subs:['Cable Side Bend','Machine Side Bend'], note:'Trench lateral flexion slot. Spinal lateral flexion only, no torso rotation, pause in the stretch.'},
+  {n:'BOX JUMPS (OPTIONAL)', w:0, s:1, r:'3-5 reps', rpe:'-', rest:'~1 min', opt:true, note:'Trench power slot. Alternate box vertical jumps and box broad jumps. New to plyometrics: pogo jumps only for the first 4-6 weeks.'}
 ]};}
 // ---- BLOCK 3 (Weeks 9-12) ----
 function b3fb(){ return {id:'fb', name:'Full Body', tag:'Strength + dropsets', ex:[
