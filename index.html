@@ -485,6 +485,20 @@ function targetWeight(ex){
 }
 function repRange(r){let m=String(r).match(/^(\d+)-(\d+)$/);if(m)return[+m[1],+m[2]];m=String(r).match(/^(\d+)$/);if(m)return[+m[1],+m[1]];return null;}
 function e1rm(w,r){w=parseFloat(w);r=parseFloat(r);if(!w||!r)return 0;return r===1?w:w*(1+r/30);}
+// memory slot per exercise; a name used at two different rep ranges gets one slot per range
+let _AMBIG=null;
+function memKey(ex){
+  if(!_AMBIG){const m={};weeks().forEach(w=>w.days.forEach(d=>d.ex.forEach(e=>{(m[e.n]=m[e.n]||new Set()).add(e.r);})));_AMBIG=new Set(Object.keys(m).filter(n=>m[n].size>1));}
+  return _AMBIG.has(ex.n)?ex.n+' ['+ex.r+']':ex.n;
+}
+// last-time record for this slot; the old shared slot (saved before the split) is used only if its logged reps fit this range
+function lastFor(ex){
+  const k=memKey(ex);if(state.lastByEx[k])return state.lastByEx[k];
+  if(k===ex.n)return null;
+  const l=state.lastByEx[ex.n],rr=repRange(ex.r);if(!l||!rr||!Array.isArray(l.sets))return null;
+  const rs=l.sets.filter(s=>s.r).map(s=>parseFloat(s.r));
+  return rs.length&&rs.every(r=>r>=rr[0]-2&&r<=rr[1]+2)?l:null;
+}
 function isBodyweightish(n){return /PULL-UP|CHIN-UP|DIP|PUSH-UP/.test(n);}
 
 
@@ -513,7 +527,7 @@ function progressionHint(ex){
     return 'Enter your '+ex.l.toUpperCase()+' 1RM in More > Settings to compute '+ex.p+' loads.';
   }
   const rr=repRange(ex.r);
-  const last=state.lastByEx[ex.n];
+  const last=lastFor(ex);
   if(!rr||!last)return null;
   const hi=rr[1];
   const w=last.bestW;
@@ -525,7 +539,7 @@ function progressionHint(ex){
   return 'Progression: aim to beat last time - a rep, a little weight, or cleaner technique.';
 }
 function lastLine(ex){
-  const last=state.lastByEx[ex.n];
+  const last=lastFor(ex);
   if(!last)return '';
   const s=last.sets.map(x=>(fmtW(x.w)||'BW')+'x'+(x.r||'?')).join('  ·  ');
   return 'Last ('+last.date+'): '+s;
@@ -536,7 +550,7 @@ function suggestedLine(ex){
   const t=targetWeight(ex);
   if(t)return 'SUGGESTED TODAY: '+t.label.toUpperCase()+' PER SET';
   if(ex.p&&ex.l)return 'SUGGESTED TODAY: SET YOUR '+ex.l.toUpperCase()+' 1RM IN SETTINGS TO GET LOADS';
-  const own=state.lastByEx[ex.n];const rr=repRange(ex.r);
+  const own=lastFor(ex);const rr=repRange(ex.r);
   const sh=own?null:strToLast(ex.n);
   const last=own||sh;
   if(!last||!rr||!last.bestW)return null;
@@ -744,7 +758,7 @@ function draftFor(xi){
 function shownVals(ex,ed,i){
   const val=(ed.vals&&ed.vals[i])||null;
   if(val)return {w:val.w,r:val.r};
-  const t=targetWeight(ex),last=state.lastByEx[ex.n];
+  const t=targetWeight(ex),last=lastFor(ex);
   if(t&&t.w)return {w:fmtW(t.w),r:(repRange(ex.r)||['',''])[0]};
   if(last&&last.sets[i])return {w:last.sets[i].w,r:last.sets[i].r};
   const rr=repRange(ex.r);return {w:'',r:rr?rr[0]:''};
@@ -777,9 +791,9 @@ function completeWorkout(){
         const nums=sets.filter(s=>s.r).map(s=>({w:parseFloat(s.w)||0,r:parseFloat(s.r)||0}));
         const bestW=Math.max(0,...nums.map(s=>s.w));
         const allTop=nums.length>0&&nums.every(s=>s.r>=rr[1]&&s.w>=bestW);
-        state.lastByEx[ex.n]={sets:sets.map(s=>({w:s.w,r:s.r})),date:todayStr(),bestW:bestW||null,allTop};
+        state.lastByEx[memKey(ex)]={sets:sets.map(s=>({w:s.w,r:s.r})),date:todayStr(),bestW:bestW||null,allTop};
       }else{
-        state.lastByEx[ex.n]={sets:sets.map(s=>({w:s.w,r:s.r})),date:todayStr()};
+        state.lastByEx[memKey(ex)]={sets:sets.map(s=>({w:s.w,r:s.r})),date:todayStr()};
       }
       const _bw=Math.max(0,...sets.map(x=>parseFloat(x.w)||0));strWrite(ex.n,_bw,null,state.set.unit,'ESSENTIALS');
     }
